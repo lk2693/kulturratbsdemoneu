@@ -29,7 +29,7 @@ export default function ProjektePage() {
     perspective: isMobile ? 800 : 1200,
     itemCount: 8,
     autoRotate: true,
-    rotationSpeed: 0.2,
+    rotationSpeed: isMobile ? 0.1 : 0.2, // Slower on mobile
     hoverSlowFactor: 0.3,
     dragSensitivity: isMobile ? 0.3 : 0.5,
     momentumDamping: 0.95,
@@ -112,14 +112,18 @@ export default function ProjektePage() {
     }
   ];
 
-  // Auto rotation
+  // Auto rotation - slower on mobile to prevent flickering
   useEffect(() => {
     if (!config.autoRotate && momentum === 0) return;
     
+    const frameRate = isMobile ? 30 : 16; // 30fps on mobile, 60fps on desktop
     const interval = setInterval(() => {
       if (!isDragging) {
         if (momentum !== 0) {
-          setMomentum(prev => prev * config.momentumDamping);
+          setMomentum(prev => {
+            const newMomentum = prev * config.momentumDamping;
+            return Math.abs(newMomentum) < 0.01 ? 0 : newMomentum;
+          });
           setRotation(prev => prev + momentum);
         } else if (config.autoRotate) {
           const speed = isHovering 
@@ -128,7 +132,7 @@ export default function ProjektePage() {
           setRotation(prev => prev + speed);
         }
       }
-    }, 16);
+    }, frameRate);
 
     return () => clearInterval(interval);
   }, [isDragging, momentum, isHovering, config.autoRotate, config.rotationSpeed, config.hoverSlowFactor, config.momentumDamping, isMobile]);
@@ -245,22 +249,26 @@ export default function ProjektePage() {
               return (
                 <div
                   key={project.id}
-                  className="absolute transition-all duration-100"
+                  className="absolute"
                   style={{
                     width: `${cardWidth}px`,
                     height: `${cardHeight}px`,
                     transform: `translate3d(${x}px, 0, ${z}px) scale(${scale})`,
                     opacity: opacity,
-                    zIndex: Math.floor(scale * 100)
+                    zIndex: Math.floor(scale * 100),
+                    transition: isMobile ? 'none' : 'all 0.1s',
+                    willChange: 'transform, opacity'
                   }}
                 >
-                  <div className="w-full h-full bg-white rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow">
+                  <div className="w-full h-full bg-white rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow" style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
                     {/* Image */}
                     <div className="relative h-40 sm:h-44 md:h-56 overflow-hidden">
                       <img 
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover"
+                        loading="eager"
+                        style={{ transform: 'translateZ(0)', WebkitTransform: 'translateZ(0)' }}
                       />
                       <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-60`}></div>
                       <div className="absolute top-2 left-2 md:top-4 md:left-4">
