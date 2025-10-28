@@ -258,23 +258,24 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white mb-8 overflow-hidden">
             <div className="flex flex-col justify-center p-8 lg:p-16 order-2 lg:order-1">
               <h3 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">
-                Die VIELEN – Shield & Shine
+                Filmfestival Braunschweig
               </h3>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                WIR SIND VIELE – jede*r Einzeln*e von uns. Gemeinsam gegen Rechts! 
-                Eine Initiative für Vielfalt, Demokratie und kulturelle Teilhabe.
+                Unabhängige Filme und Dokumentationen aus aller Welt. Das Filmfestival 
+                Braunschweig zeigt innovative Produktionen abseits des Mainstreams und 
+                bietet eine Plattform für aufstrebende Filmemacher*innen.
               </p>
               <Link 
-                href="/projekte/die-vielen-shield-and-shine"
+                href="/projekte/filmfestival"
                 className="inline-block border-2 border-black text-black px-8 py-4 font-bold hover:bg-black hover:text-white transition-all duration-300 text-center max-w-xs"
               >
-                MEHR ERFAHREN
+                ZUM PROGRAMM
               </Link>
             </div>
             <div className="relative h-[400px] lg:h-[600px] order-1 lg:order-2">
               <img 
-                src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1200&q=80"
-                alt="Die VIELEN"
+                src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1200&q=80"
+                alt="Filmfestival Braunschweig"
                 className="w-full h-full object-cover"
               />
             </div>

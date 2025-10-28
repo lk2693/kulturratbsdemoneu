@@ -86,12 +86,12 @@ export default function ProjectSection() {
       category: "Festival"
     },
     {
-      title: "Die VIELEN – Shield & Shine",
-      description: "WIR SIND VIELE – jede*r Einzeln*e von uns. Gemeinsam gegen Rechts! Eine Initiative für Vielfalt und gegen Diskriminierung.",
-      date: "Laufend",
-      href: "/projekte/die-vielen-shield-and-shine",
-      imageUrl: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1200&q=80",
-      category: "Initiative"
+      title: "Filmfestival Braunschweig",
+      description: "Unabhängige Filme und Dokumentationen aus aller Welt. Eine Plattform für aufstrebende Filmemacher*innen.",
+      date: "Dezember 2025",
+      href: "/projekte/filmfestival",
+      imageUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1200&q=80",
+      category: "Film"
     },
     {
       title: "Kulturprojekt Herbst 2025",
